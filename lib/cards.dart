@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
+class Cards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,11 +34,7 @@ class _CardsPageState extends State<CardsPage> {
 
 Container _buildCards(PageController controller, double page) {
   return Container(
-    decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-      Colors.yellow,
-      Colors.red,
-    ])),
+    color: Color(0xFF21A179),
     child: Padding(
       padding:
           const EdgeInsets.only(top: 25.0, right: 5.0, left: 5.0, bottom: 20.0),
@@ -53,7 +49,8 @@ Container _buildCards(PageController controller, double page) {
               ),
             ),
             SizedBox(height: 5),
-            _pagesIndcator(3, page),
+            PageIndicator(3, page),
+            // _pagesIndcator(3, page, tickerProvider),
           ],
         ),
       ),
@@ -121,27 +118,51 @@ class ScrollCards extends StatelessWidget {
   }
 }
 
-double current;
-Row _pagesIndcator(int length, double currentPage) {
-  current = currentPage;
-  List<Widget> points = List.generate(length, (i) {
-    print('i= $i');
-    return Padding(
-      padding: const EdgeInsets.only(right: 2.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          shape: BoxShape.circle,
+class PageIndicator extends StatefulWidget {
+  final int length;
+  final double currentPage;
+  const PageIndicator(this.length, this.currentPage);
+  State<StatefulWidget> createState() => PageIndicatorState();
+}
+
+class PageIndicatorState extends State<PageIndicator>
+    with TickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> points = List.generate(widget.length, (i) {
+
+      var size = 10.0;
+
+      if (i == widget.currentPage.ceil()) {
+        setState(() {
+          size += 2.0;
+        });
+      }
+
+      return AnimatedSize(
+        duration: Duration(milliseconds: 200),
+        vsync: this,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 2.0),
+          child: SizedBox(
+            width: size,
+            height: size,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              width: size,
+              height: size,
+            ),
+          ),
         ),
-        width: i == 0 ? 1 : i * currentPage.ceilToDouble() * 2.0,
-        height: 5.0,
-      ),
+      );
+    });
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: points,
     );
-  });
-  print('currentPage= $currentPage');
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: points,
-  );
+  }
 }
