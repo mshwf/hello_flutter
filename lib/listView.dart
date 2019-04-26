@@ -1,4 +1,4 @@
-//The Boring Flutter Development Show [Pilot Episode]:a
+//The Boring Flutter Development Show [Pilot Episode]:
 //https://www.youtube.com/watch?v=yr8F2S3Amas&list=LL-eE33O-B5bGUXWQyHzjvOA&index=3&t=0s
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/articles.dart';
