@@ -2,11 +2,11 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_controls.dart';
 
-class FlarePage extends StatefulWidget {
-  createState() => _FlarePageState();
+class FlareApp extends StatefulWidget {
+  createState() => _FlareAppState();
 }
 
-class _FlarePageState extends State<FlarePage> {
+class _FlareAppState extends State<FlareApp> {
   bool isOpen = false;
   final FlareControls controls = FlareControls();
 

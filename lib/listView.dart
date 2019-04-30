@@ -16,7 +16,7 @@ class _ListVeiewAppState extends State<ListVeiewApp> {
     return MaterialApp(
       title: 'List View',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.purple,
       ),
       home: Scaffold(
           body: RefreshIndicator(
