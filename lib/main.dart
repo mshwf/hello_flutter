@@ -5,4 +5,4 @@ import 'package:hello_flutter/flare.dart';
 import 'package:hello_flutter/listView.dart';
 import 'package:hello_flutter/tests.dart';
 
-void main() => runApp(CardsApp());
+void main() => runApp(ListViewApp());

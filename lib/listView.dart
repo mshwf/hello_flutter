@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:hello_flutter/articles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ListVeiewApp extends StatefulWidget {
+class ListViewApp extends StatefulWidget {
   @override
-  _ListVeiewAppState createState() => _ListVeiewAppState();
+  _ListViewAppState createState() => _ListViewAppState();
 }
 
-class _ListVeiewAppState extends State<ListVeiewApp> {
+class _ListViewAppState extends State<ListViewApp> {
   List<Article> _articles = articles;
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _ListViewPageState extends State<ListViewPage> {
   }
 
   Widget _buildItem(Article e) {
-    return Padding(
+    return Padding(key: Key(e.text),
       padding: const EdgeInsets.all(16.0),
       child: ExpansionTile(
         title: Text(e.text, style: TextStyle(fontSize: 24.0)),
