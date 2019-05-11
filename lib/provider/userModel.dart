@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class UserModel with ChangeNotifier {
   UserModel() {
     username = "Mohamed";
-    email = "m_shawaf@outlook.com";
+    email = "me@domain.com";
     country = "Egypt";
-    mobile = "01005508565";
+    mobile = "10000000001";
     address = "Giza";
   }
 
