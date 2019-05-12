@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:hello_flutter/provider/userModel.dart';
 
 class UserRepository with ChangeNotifier {
-  UserRepository(){
+  UserRepository() {
     user = new UserModel();
   }
   UserModel _user;
@@ -14,8 +14,6 @@ class UserRepository with ChangeNotifier {
     }
   }
 
-   @override
-  String toString() {
-    return 'From User: username= ${user.username}, email= ${user.email}, country= ${user.country}, mobile= ${user.mobile}, address= ${user.address}';
+  void save() {
   }
 }

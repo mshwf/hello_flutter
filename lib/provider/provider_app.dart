@@ -14,61 +14,151 @@ class StateApp extends StatelessWidget {
   }
 }
 
-class MyStateWidget extends StatelessWidget {
+class MyStateWidget extends StatefulWidget {
   const MyStateWidget({
     Key key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    var user = Provider.of<UserRepository>(context);
-    TextEditingController addressController =
-        TextEditingController(text: user.user.address);
+  _MyStateWidgetState createState() => _MyStateWidgetState();
+}
 
-    TextEditingController mobileController =
-        TextEditingController(text: user.user.mobile);
+UserRepository userRepo;
+
+class _MyStateWidgetState extends State<MyStateWidget> {
+  @override
+  Widget build(BuildContext context) {
+    userRepo = Provider.of<UserRepository>(context);
 
     TextEditingController usernameController =
-        TextEditingController(text: user.user.username);
+        TextEditingController(text: userRepo.user.username);
 
     TextEditingController emailController =
-        TextEditingController(text: user.user.email);
-
-    TextEditingController countryController =
-        TextEditingController(text: user.user.country);
+        TextEditingController(text: userRepo.user.email);
 
     return Scaffold(
       appBar: AppBar(
         title: Text('User info.'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-                controller: usernameController,
-                onChanged: (val) => user.user.username = val),
-            TextField(
-              controller: emailController,
-              onChanged: (val) => user.user.email = val,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  child: Text(
+                    'Basic Info.',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(8),
+                ),
+                TextField(
+                    controller: usernameController,
+                    onChanged: (val) => userRepo.user.username = val),
+                TextField(
+                  controller: emailController,
+                  onChanged: (val) => userRepo.user.email = val,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  child: Text(
+                    'Pref. Communication types',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(8),
+                ),
+                Column(
+                  children: [
+                    CheckboxListTile(
+                      title: Text('Email'),
+                      value: userRepo.user.comms.contains(Comm.email),
+                      onChanged: (checked) {
+                        setState(() {
+                          if (checked)
+                            userRepo.user.comms.add(Comm.email);
+                          else
+                            userRepo.user.comms.remove(Comm.email);
+                        });
+                      },
+                    ),
+                    CheckboxListTile(
+                      title: Text('Phone'),
+                      value: userRepo.user.comms.contains(Comm.phone),
+                      onChanged: (checked) {
+                        setState(() {
+                          if (checked)
+                            userRepo.user.comms.add(Comm.phone);
+                          else
+                            userRepo.user.comms.remove(Comm.phone);
+                        });
+                      },
+                    ),
+                    CheckboxListTile(
+                      title: Text('SMS'),
+                      value: userRepo.user.comms.contains(Comm.sms),
+                      onChanged: (checked) {
+                        setState(() {
+                          if (checked)
+                            userRepo.user.comms.add(Comm.sms);
+                          else
+                            userRepo.user.comms.remove(Comm.sms);
+                        });
+                      },
+                    )
+                  ],
+                ),
+                Container(
+                  child: Text(
+                    'Genre',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(8),
+                ),
+                RadioListTile(
+                  title: Text('Male'),
+                  value: true,
+                  groupValue: userRepo.user.isMale,
+                  onChanged: (value) {
+                    setGenre(userRepo.user, value);
+                  },
+                ),
+                RadioListTile(
+                  title: Text('Female'),
+                  value: false,
+                  groupValue: userRepo.user.isMale,
+                  onChanged: (value) {
+                    setGenre(userRepo.user, value);
+                  },
+                ),
+                RaisedButton(child: Text('Save'), onPressed: _saveUser)
+              ],
             ),
-            TextField(
-                controller: countryController,
-                onChanged: (val) => user.user.country = val),
-            TextField(
-                controller: mobileController,
-                onChanged: (val) => user.user.mobile = val),
-            TextField(
-                controller: addressController,
-                onChanged: (val) => user.user.address = val),
-            RaisedButton(
-                child: Text('Save'),
-                onPressed: () {
-                  print(user);
-                })
-          ],
+          ),
         ),
       ),
     );
+  }
+
+  void setGenre(UserModel user, value) {
+    setState(() {
+      user.isMale = value;
+    });
+  }
+
+  _saveUser() {
+    userRepo.save();
   }
 }
