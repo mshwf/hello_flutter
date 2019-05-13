@@ -9,4 +9,4 @@ import 'package:hello_flutter/tests.dart';
 import 'package:hello_flutter/misc/test.dart';
 import 'provider/provider_app.dart';
 
-void main() => runApp(StateApp());
+void main() => runApp(ProviderApp());

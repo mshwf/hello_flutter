@@ -6,7 +6,6 @@ class UserModel {
     isMale = true;
   }
 
-  double userCode = 1.0;
   String username;
   String email;
   List<Comm> comms;

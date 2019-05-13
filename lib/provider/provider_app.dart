@@ -4,28 +4,28 @@ import 'package:hello_flutter/provider/userModel.dart';
 import 'package:hello_flutter/provider/user_repository.dart';
 import 'package:provider/provider.dart';
 
-class StateApp extends StatelessWidget {
+class ProviderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: ChangeNotifierProvider(
-          builder: (context) => UserRepository(), child: MyStateWidget()),
+          builder: (context) => UserRepository(), child: UserInfoWidget()),
     );
   }
 }
 
-class MyStateWidget extends StatefulWidget {
-  const MyStateWidget({
+class UserInfoWidget extends StatefulWidget {
+  const UserInfoWidget({
     Key key,
   }) : super(key: key);
 
   @override
-  _MyStateWidgetState createState() => _MyStateWidgetState();
+  _UserInfoWidgetState createState() => _UserInfoWidgetState();
 }
 
 UserRepository userRepo;
 
-class _MyStateWidgetState extends State<MyStateWidget> {
+class _UserInfoWidgetState extends State<UserInfoWidget> {
   @override
   Widget build(BuildContext context) {
     userRepo = Provider.of<UserRepository>(context);
@@ -119,7 +119,7 @@ class _MyStateWidgetState extends State<MyStateWidget> {
                 ),
                 Container(
                   child: Text(
-                    'Genre',
+                    'Sex',
                     style: TextStyle(color: Colors.white),
                   ),
                   decoration: BoxDecoration(
@@ -132,7 +132,7 @@ class _MyStateWidgetState extends State<MyStateWidget> {
                   value: true,
                   groupValue: userRepo.user.isMale,
                   onChanged: (value) {
-                    setGenre(userRepo.user, value);
+                    setSex(userRepo.user, value);
                   },
                 ),
                 RadioListTile(
@@ -140,7 +140,7 @@ class _MyStateWidgetState extends State<MyStateWidget> {
                   value: false,
                   groupValue: userRepo.user.isMale,
                   onChanged: (value) {
-                    setGenre(userRepo.user, value);
+                    setSex(userRepo.user, value);
                   },
                 ),
                 RaisedButton(child: Text('Save'), onPressed: _saveUser)
@@ -152,7 +152,7 @@ class _MyStateWidgetState extends State<MyStateWidget> {
     );
   }
 
-  void setGenre(UserModel user, value) {
+  void setSex(UserModel user, value) {
     setState(() {
       user.isMale = value;
     });
