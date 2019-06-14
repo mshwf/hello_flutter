@@ -7,6 +7,7 @@ import 'package:hello_flutter/listView.dart';
 import 'package:hello_flutter/state_management/simple_form.dart';
 import 'package:hello_flutter/tests.dart';
 import 'package:hello_flutter/misc/test.dart';
+import 'flutter_comm_50000.dart';
 import 'provider/provider_app.dart';
 
-void main() => runApp(ProviderApp());
+void main() => runApp(FlutterComm50000());

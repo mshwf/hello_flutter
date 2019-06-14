@@ -1,4 +1,6 @@
 class UserModel {
+  double userCode;
+
   UserModel() {
     username = "Mohamed";
     email = "me@domain.com";
