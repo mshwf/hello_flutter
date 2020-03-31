@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CardsApp extends StatelessWidget {
+class App_Cards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hello_flutter/provider/userModel.dart';
 import 'package:provider/provider.dart';
 
-class StateApp extends StatelessWidget {
+class App_State extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

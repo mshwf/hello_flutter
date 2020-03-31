@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:hello_flutter/articles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ListViewApp extends StatefulWidget {
+class App_ListView extends StatefulWidget {
   @override
-  _ListViewAppState createState() => _ListViewAppState();
+  _App_ListViewState createState() => _App_ListViewState();
 }
 
-class _ListViewAppState extends State<ListViewApp> {
+class _App_ListViewState extends State<App_ListView> {
   List<Article> _articles = articles;
   @override
   Widget build(BuildContext context) {

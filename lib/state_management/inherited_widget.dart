@@ -11,7 +11,7 @@ class InheritedWidgetApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: Scaffold(resizeToAvoidBottomPadding: false, body: LoginPage()),
+      home: Scaffold(resizeToAvoidBottomPadding: false, body: LoginPage(child: null,)),
     );
   }
 }

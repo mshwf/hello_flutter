@@ -14,7 +14,7 @@ import 'package:hello_flutter/listView.dart';
 void main() {
   testWidgets('Clicking tile opens it', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(ListViewApp());
+    await tester.pumpWidget(App_ListView());
 
     // Verify that our counter starts at 0.
     expect(find.byIcon(Icons.launch), findsNothing);
