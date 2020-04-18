@@ -1,3 +1,5 @@
+//https://stackoverflow.com/a/53579501/6197785
+
 import 'package:flutter/material.dart';
 
 Color myColor = Color(0xff00bfa5);
