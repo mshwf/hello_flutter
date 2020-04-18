@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hello_flutter/provider/userModel.dart';
+import 'package:hello_flutter/provider/user_repository.dart';
 import 'package:provider/provider.dart';
 
 class App_State extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ChangeNotifierProvider(
-          builder: (context) => UserModel(), child: MyStateWidget()),
+      home: ChangeNotifierProvider<UserRepository>(
+          builder: (context) => UserRepository(), child: MyStateWidget()),
     );
   }
 }
@@ -21,20 +22,12 @@ class MyStateWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<UserModel>(context);
-    TextEditingController addressController =
-        TextEditingController(text: user.address);
-
-    TextEditingController mobileController =
-        TextEditingController(text: user.mobile);
 
     TextEditingController usernameController =
         TextEditingController(text: user.username);
 
     TextEditingController emailController =
         TextEditingController(text: user.email);
-
-    TextEditingController countryController =
-        TextEditingController(text: user.country);
 
     return Scaffold(
       appBar: AppBar(
@@ -51,15 +44,6 @@ class MyStateWidget extends StatelessWidget {
               controller: emailController,
               onChanged: (val) => user.email = val,
             ),
-            TextField(
-                controller: countryController,
-                onChanged: (val) => user.country = val),
-            TextField(
-                controller: mobileController,
-                onChanged: (val) => user.mobile = val),
-            TextField(
-                controller: addressController,
-                onChanged: (val) => user.address = val),
             RaisedButton(
                 child: Text('Save'),
                 onPressed: () {

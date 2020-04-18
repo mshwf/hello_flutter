@@ -2,7 +2,7 @@
 //https://www.youtube.com/watch?v=yr8F2S3Amas&list=LL-eE33O-B5bGUXWQyHzjvOA&index=3&t=0s
 import 'package:flutter/material.dart';
 import 'package:hello_flutter/articles.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 class App_ListView extends StatefulWidget {
   @override
@@ -43,7 +43,8 @@ class _ListViewPageState extends State<ListViewPage> {
   }
 
   Widget _buildItem(Article e) {
-    return Padding(key: Key(e.text),
+    return Padding(
+      key: Key(e.text),
       padding: const EdgeInsets.all(16.0),
       child: ExpansionTile(
         title: Text(e.text, style: TextStyle(fontSize: 24.0)),
@@ -57,10 +58,10 @@ class _ListViewPageState extends State<ListViewPage> {
               IconButton(
                 icon: Icon(Icons.launch),
                 onPressed: () async {
-                  final fakeUrl = 'http://${e.domain}';
-                  if (await canLaunch(fakeUrl)) {
-                    launch(fakeUrl);
-                  }
+                  // final fakeUrl = 'http://${e.domain}';
+                  // if (await canLaunch(fakeUrl)) {
+                  //   launch(fakeUrl);
+                  // }
                 },
               )
             ],
