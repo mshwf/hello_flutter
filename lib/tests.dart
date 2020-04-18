@@ -23,12 +23,12 @@ class _TestCoreState extends State<TestCore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top:50.0),
+                padding: const EdgeInsets.only(top: 50.0),
                 child: Container(
                     decoration: BoxDecoration(color: Colors.yellow),
                     child: Center(
@@ -40,13 +40,19 @@ class _TestCoreState extends State<TestCore> {
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(height: 30,
+                    Container(
+                      height: 30,
                       child: AspectRatio(
                           aspectRatio: 1.0 / 1.0,
-                          child: Container(width: 30,
+                          child: Container(
+                            width: 30,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                    colors: [Colors.green, Colors.red, Colors.blue],
+                                    colors: [
+                                  Colors.green,
+                                  Colors.red,
+                                  Colors.blue
+                                ],
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter)),
                           )),
@@ -81,3 +87,27 @@ class _TestCoreState extends State<TestCore> {
 //     );
 //   }
 // }
+class SimpleStatelessWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('Hello Flutter!'));
+  }
+}
+
+class SimpleStatefulWidget extends StatefulWidget {
+  const SimpleStatefulWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  _SimpleState createState() => _SimpleState();
+}
+
+class _SimpleState extends State<SimpleStatefulWidget> {
+  @override
+  Widget build(BuildContext context) {
+    var usernameController = TextEditingController(text: 'dev');
+
+    return Center(child: TextField(controller: usernameController));
+  }
+}

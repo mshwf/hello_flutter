@@ -34,7 +34,7 @@ class MySlider extends StatefulWidget {
 
 class _MySliderState extends State<MySlider> {
   double _value = 1.0;
-
+int x= null;
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
